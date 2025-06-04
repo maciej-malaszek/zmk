@@ -243,6 +243,7 @@ static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
                                                               .s = (binding->param2 >> 8) & 0xFF,
                                                               .b = binding->param2 & 0xFF});
     }
+    LOG_DBG("on_keymap_binding_pressed FAILED");
 
     return -ENOTSUP;
 }

@@ -376,6 +376,7 @@ int zmk_rgb_underglow_toggle(void) {
 
 int zmk_rgb_underglow_set_hsb(struct zmk_led_hsb color) {
     if (color.h > HUE_MAX || color.s > SAT_MAX || color.b > BRT_MAX) {
+        LOG_DBG("SET_HSB FAILED");
         return -ENOTSUP;
     }
 
@@ -494,17 +495,19 @@ static int rgb_underglow_auto_state(bool target_wake_state) {
 static int rgb_underglow_event_listener(const zmk_event_t *eh) {
 
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE)
+    LOG_DBG("AUTO_OFF_IDLE OK");
     if (as_zmk_activity_state_changed(eh)) {
         return rgb_underglow_auto_state(zmk_activity_get_state() == ZMK_ACTIVITY_ACTIVE);
     }
 #endif
 
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_USB)
+    LOG_DBG("AUTO_OFF_USB OK");
     if (as_zmk_usb_conn_state_changed(eh)) {
         return rgb_underglow_auto_state(zmk_usb_is_powered());
     }
 #endif
-
+    LOG_DBG("rgb_underglow_event_listener FAILED");
     return -ENOTSUP;
 }
 
