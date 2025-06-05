@@ -267,4 +267,6 @@ static const struct behavior_driver_api behavior_rgb_underglow_driver_api = {
 BEHAVIOR_DT_INST_DEFINE(0, NULL, NULL, NULL, NULL, POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,
                         &behavior_rgb_underglow_driver_api);
 
+#else
+#error "DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)"
 #endif /* DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT) */
