@@ -40,18 +40,7 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
         return NULL;
     }
 
-    LOG_WRN("Looking for: %s", name);
-
     STRUCT_SECTION_FOREACH(zmk_behavior_ref, item) {
-
-        if (item->device == NULL) {
-            LOG_WRN("Device is null");
-        } else {
-            LOG_WRN("dev->named: %s", item->device->name);
-            LOG_WRN("dev->state->initialized: %s",
-                    item->device->state->initialized ? "true" : "false");
-            LOG_WRN("dev->state->init_res: %d", item->device->state->init_res);
-        }
 
         if (z_device_is_ready(item->device) && item->device->name == name) {
             return item->device;

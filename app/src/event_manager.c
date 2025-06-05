@@ -37,7 +37,6 @@ int zmk_event_manager_handle_from(zmk_event_t *event, uint8_t start_index) {
             LOG_DBG("Listener captured the event");
             return 0;
         default:
-            LOG_WRN("My code!");
             LOG_DBG("Listener returned an error: %d", ret);
             return ret;
         }
