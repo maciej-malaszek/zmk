@@ -44,12 +44,6 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
 
     STRUCT_SECTION_FOREACH(zmk_behavior_ref, item) {
 
-        if (item->metadata.display_name == NULL) {
-            LOG_WRN("DisplayName is null");
-        } else {
-            LOG_WRN("DisplayName: %s", item->metadata.display_name);
-        }
-
         if (item->device == NULL) {
             LOG_WRN("Device is null");
         } else {
