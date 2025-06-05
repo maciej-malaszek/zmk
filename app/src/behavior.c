@@ -42,11 +42,13 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
 
     STRUCT_SECTION_FOREACH(zmk_behavior_ref, item) {
 
-        if (!item->device) {
+        if (!(item->metadata)) {
+            LOG_WRN("Metadata is null");
+        } else {
+            LOG_WRN("DisplayName: %s", item->metadata->display_name);
+        }
+        if (!(item->device)) {
             LOG_WRN("Device is null");
-            if (!item->metadata) {
-                LOG_WRN("Metadata is null");
-            }
         } else {
             LOG_WRN("dev->state->initialized: %s", dev->state->initialized ? "true" : "false")
             LOG_WRN("dev->state->init_res: %d", dev->state->init_res);
