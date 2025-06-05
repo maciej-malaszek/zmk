@@ -47,9 +47,10 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
         if (item->device == NULL) {
             LOG_WRN("Device is null");
         } else {
-            LOG_WRN("dev->named: %s", dev->name);
-            LOG_WRN("dev->state->initialized: %s", dev->state->initialized ? "true" : "false");
-            LOG_WRN("dev->state->init_res: %d", dev->state->init_res);
+            LOG_WRN("dev->named: %s", item->dev->name);
+            LOG_WRN("dev->state->initialized: %s",
+                    item->dev->state->initialized ? "true" : "false");
+            LOG_WRN("dev->state->init_res: %d", item->dev->state->init_res);
         }
 
         if (z_device_is_ready(item->device) && item->device->name == name) {
