@@ -41,6 +41,16 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
     }
 
     STRUCT_SECTION_FOREACH(zmk_behavior_ref, item) {
+
+        if (!item->device) {
+            LOG_WRN("Device is null");
+            if (!item->metadata) {
+                LOG_WRN("Metadata is null");
+            }
+        } else {
+            LOG_WRN("dev->state->initialized: %s", dev->state->initialized ? "true" : "false")
+            LOG_WRN("dev->state->init_res: %d", dev->state->init_res);
+        }
         if (z_device_is_ready(item->device) && item->device->name == name) {
             return item->device;
         }
@@ -50,6 +60,13 @@ const struct device *z_impl_behavior_get_binding(const char *name) {
         if (z_device_is_ready(item->device) && strcmp(item->device->name, name) == 0) {
             return item->device;
         }
+    }
+
+    if (name == "rgb_ug") {
+        LOG_WRN("Looking for: %s", name);
+
+    } else {
+        LOG_WRN("Looking for: %s", name);
     }
 
     return NULL;
